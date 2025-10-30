@@ -5,6 +5,23 @@ This directory contains HTTP request files for testing Hipcall Public API endpoi
 ## Setup
 
 Before running these requests, create an `http-client.env.json` file in your project root with the following structure:
+- Go to **Extensions** -
+- Click on `Rest Client` -
+- Click on ⚙️ -
+- Go to Settings -
+- Find `Rest-client: Environment Variables`-
+- Click on `Edit in settings.json`-
+- Copy the code below and customize for your information -
+```json
+{
+    "rest-client.environmentVariables": {
+        "$shared": {
+            "base_url": "https://use.hipcall.com.tr/api/v3",
+            "token": "your_token_here"
+        }
+    }
+}
+```
 
 
 ## Available Endpoints
