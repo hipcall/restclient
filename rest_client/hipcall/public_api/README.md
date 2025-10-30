@@ -6,14 +6,6 @@ This directory contains HTTP request files for testing Hipcall Public API endpoi
 
 Before running these requests, create an `http-client.env.json` file in your project root with the following structure:
 
-```json
-{
-  "dev": {
-    "base_url": "https://api.hipcall.com/v3",
-    "token": "your_api_token_here"
-  }
-}
-```
 
 ## Available Endpoints
 
