@@ -1,0 +1,30 @@
+@deal_id = 5441
+
+### Get deal with id
+GET {{base_url}}/deals/{{deal_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get deal list
+GET {{base_url}}/deals HTTP/1.1
+    ?limit=10
+    &offset=0
+    &q=Acme%20Deal
+    &sort=id.asc 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+### Get deals comments
+GET {{base_url}}/deals/{{deal_id}}/comments?limit=10&offset=0&sort=id.asc HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Create deal comment
+POST {{base_url}}/deals/{{deal_id}}/comments HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "This is a test comment for the deal #{{$timestamp}}"
+}

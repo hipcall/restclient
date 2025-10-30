@@ -1,0 +1,10 @@
+@user_id = 2884
+
+### Generate SIP JWT token
+POST {{base_url}}/sip/token HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "user_id": {{user_id}}
+}

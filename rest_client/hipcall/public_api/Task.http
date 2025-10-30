@@ -1,0 +1,54 @@
+@task_id = 110181
+
+### Get tasks comments
+GET {{base_url}}/tasks/{{task_id}}/comments HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+
+### Create task comment
+POST {{base_url}}/tasks/{{task_id}}/comments HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "content": "This is a test comment for the task #{{$timestamp}}"
+}
+
+### Get task with id
+GET {{base_url}}/tasks/{{task_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get task list
+GET {{base_url}}/tasks HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Create task with assign to user id
+POST {{base_url}}/tasks HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "assign_to_user_id": 2884,
+  "auto_assign_to_user": false,
+  "company_ids": [
+    66336
+  ],
+  "contact_ids": [
+    49775
+  ],
+  "deal_ids": [
+    5441
+  ],
+  "description": "This is a test description for the task #{{$timestamp}}",
+  "due_date": "2025-10-24T04:50:34+03:00",
+  "name": "New task #{{$timestamp}}",
+  "priority": "medium"
+}

@@ -1,0 +1,193 @@
+@call_id = d126b9c5-70cf-4e17-acc1-efb1f79786df
+@date = 2023-11-06
+@greeting_id = 2494
+@number_id = 638
+@tag_id = 5352
+@team_id = 1560
+@user_id = 2945
+@voicemail_id = 78
+
+
+### Start outbound call and bridge user
+POST {{base_url}}/users/{{user_id}}/call HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "call_masking": true,
+  "call_masking_name": "Support Team",
+  "callee_number": "+905326202911",
+  "ring_user_first": true
+}
+
+### Get call with id
+GET {{base_url}}/calls/{{call_id}}?date={{date}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get calls tags
+GET {{base_url}}/calls/{{call_id}}/tags HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Add tag to call
+POST {{base_url}}/calls/{{call_id}}/tags HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "tag_id": {{tag_id}}
+}
+
+### Get team with id
+GET {{base_url}}/teams/{{team_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get greeting with id
+GET {{base_url}}/greetings/{{greeting_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get user with id (show)
+GET {{base_url}}/users/{{user_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Update user with patch method (422 Unprocessable Entity)
+PATCH {{base_url}}/users/{{user_id}} HTTP/1.1 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  /*"default_number": 123,*/
+  "state": "available"
+}
+
+### Update user with put method (422 Unprocessable Entity)
+PUT {{base_url}}/users/{{user_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  /*"default_number": "08508850226",*/
+  "state": "available"
+}
+
+### Start outbound call and bridge call to extension
+
+### Get number list
+GET {{base_url}}/numbers HTTP/1.1
+    ?limit=5
+    &offset=0
+    &q=08508850226
+    &sort=id.asc,name.desc_nulls_last
+Authorization: Bearer {{token}}
+
+### Get greeting list
+GET {{base_url}}/greetings HTTP/1.1
+    ?limit=10
+    &offset=0
+    &q=Welcome
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+### Get calls comments
+GET {{base_url}}/calls/{{call_id}}/comments HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Create a comment for a call
+POST {{base_url}}/calls/{{call_id}}/comments HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "content": "New task {{$timestamp}}"
+}
+
+### Get voicemail with id
+GET {{base_url}}/voicemails/{{voicemail_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get number with id
+GET {{base_url}}/numbers/{{number_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Remove tag from call
+DELETE {{base_url}}/calls/{{call_id}}/tags/{{tag_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get extension with id
+
+### Get team list
+GET {{base_url}}/teams HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get call list
+GET {{base_url}}/calls HTTP/1.1
+    ?limit=5
+    &offset=0
+    &q=08508850226
+    &sort=started_at.asc 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get user list
+GET {{base_url}}/users HTTP/1.1
+    ?limit=10
+    &offset=0
+    &q=onur@hipcall.com
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+### Get cards for a call
+GET {{base_url}}/calls/{{call_id}}/cards HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Create a card and send it to clients
+POST {{base_url}}/calls/{{call_id}}/cards HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "card": [
+    {
+      "link": "https://my-crm.com",
+      "text": "My CRM",
+      "type": "title"
+    },
+    {
+      "label": "Account ID",
+      "link": "https://my-crm.com/1234",
+      "text": "1234",
+      "type": "shortText"
+    },
+    {
+      "label": "Company name",
+      "text": "Acme Inc.",
+      "type": "shortText"
+    },
+    {
+      "label": "Account Owner",
+      "type": "user",
+      "user_id": {{user_id}}
+    }
+  ]
+}
+
+### Get extension list
+GET {{base_url}}/extensions HTTP/1.1
+    ?limit=10
+    &offset=0
+    &q=100
+    &sort=id.asc 
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get voicemail with id
+GET {{base_url}}/voicemails/{{voicemail_id}} HTTP/1.1
+Authorization: Bearer {{token}}

@@ -1,0 +1,69 @@
+@company_id = 66336
+@contact_id = 49775
+@phone_number = "+908508850226"
+
+### Get companies list
+GET {{base_url}}/companies HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+
+### Get companies comments
+GET {{base_url}}/companies/{{company_id}}/comments HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+
+### Create company comment
+POST {{base_url}}/companies/{{company_id}}/comments HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "content": "Created comment for company #{{$timestamp}}"
+}
+
+### Get companies list with id
+GET {{base_url}}/companies/{{company_id}} HTTP/1.1 
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+### Get contacts comments
+GET {{base_url}}/contacts/{{contact_id}}/comments HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+### Create contacts comments
+POST {{base_url}}/contacts/{{contact_id}}/comments HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "content": "This is a test comment for the contact #{{$timestamp}}"
+}
+
+### Get contact with id
+GET {{base_url}}/contacts/{{contact_id}} HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+### Lookup by phone
+GET {{base_url}}/lookup/by_phone?number={{phone_number}} HTTP/1.1
+Authorization: Bearer {{token}}
+
+### Get contacts list
+GET {{base_url}}/contacts HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
