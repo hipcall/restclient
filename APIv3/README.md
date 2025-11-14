@@ -2,14 +2,6 @@
 
 This directory contains HTTP request files for testing Hipcall Public API endpoints using REST Client extensions (VS Code, Cursor, etc.).
 
-## Setup
-
-Before running these requests, create an `http-client.env.json` file in your project root with the following structure:
-- Go to **Extensions** 
-- Search `Rest Client` 
-- Click on `Rest Client` by humao
-- Click on `Install`
-
 ## Available Endpoints
 
 - **Account.http** - User management endpoints
@@ -21,13 +13,6 @@ Before running these requests, create an `http-client.env.json` file in your pro
 - **SIP_Tokens.http** - SIP token generation
 - **Tags.http** - Tag operations
 - **Task.http** - Task management and comments
-
-## Usage
-
-1. Install a REST Client extension for your IDE
-2. Open any `.http` file
-3. Click "Send Request" above the request you want to execute
-4. View the response in the response panel
 
 ## Authentication
 
