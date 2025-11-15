@@ -1,5 +1,5 @@
 @task_id = 110181
-
+@tag_id = 5416
 ### Get tasks comments
 GET {{base_url}}/tasks/{{task_id}}/comments HTTP/1.1
     ?limit=10
@@ -52,3 +52,25 @@ Content-Type: application/json
   "name": "New task #{{$timestamp}}",
   "priority": "medium"
 }
+
+### Get task tags
+GET {{base_url}}/tasks/{{task_id}}/tags HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Add tag to task
+POST {{base_url}}/tasks/{{task_id}}/tags HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "tag_id": {{tag_id}}
+}
+
+### Remove tag from task
+DELETE {{base_url}}/tasks/{{task_id}}/tags/{{tag_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
