@@ -1,1 +1,21 @@
+@push_token = fGzJ5K8xRmS:APA91bH...
+@token_type = fcm
+### Register Push Notification Token
+POST {{base_url}}/push/token HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
 
+{
+  "token": "{{push_token}}",
+  "token_type": "{{token_type}}"
+}
+
+### Delete Push Notification Token
+DELETE {{base_url}}/push/token HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "token": "{{push_token}}",
+  "token_type": "{{token_type}}"
+}

@@ -1,6 +1,9 @@
 @company_id = 66336
 @contact_id = 49775
+@email = xfirm@bfpratik.com
 @phone_number = "+908508850226"
+@tag_id = 5417
+@user_id = 2945
 
 ### Get companies list
 GET {{base_url}}/companies HTTP/1.1
@@ -8,6 +11,31 @@ GET {{base_url}}/companies HTTP/1.1
     &offset=0
     &sort=id.asc
 Authorization: Bearer {{token}}
+
+### Create company
+POST {{base_url}}/companies HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "assign_to_user_id": {{user_id}},
+  "custom_url": "https://custom.com #{{$timestamp}}",
+  "description": "This is a test description for the company #{{$timestamp}}",
+  "emails": [
+    {
+      "email": "info@microsoft.com #{{$timestamp}}"
+    }
+  ],
+  "linkedin_url": "https://linkedin.com/company/microsoft #{{$timestamp}}",
+  "name": "Microsoft Inc #{{$timestamp}}",
+  "phones": [
+    {
+      "country": "US",
+      "number": "+1 (425) 882-8080 #{{$timestamp}}"
+    }
+  ],
+  "website_url": "https://microsoft.com #{{$timestamp}}"
+}
 
 
 ### Get companies comments
@@ -27,6 +55,25 @@ Authorization: Bearer {{token}}
     "content": "Created comment for company #{{$timestamp}}"
 }
 
+### Get company tag
+GET {{base_url}}/companies/{{company_id}}/tags HTTP/1.1
+    ?limit=10
+    &offset=0
+Authorization: Bearer {{token}}
+
+### Add tag to company
+POST {{base_url}}/companies/{{company_id}}/tags HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "tag_id": {{tag_id}}
+}
+
+### Remove tag from company
+DELETE {{base_url}}/companies/{{company_id}}/tags/{{tag_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
 ### Get companies list with id
 GET {{base_url}}/companies/{{company_id}} HTTP/1.1 
     ?limit=10
@@ -34,6 +81,38 @@ GET {{base_url}}/companies/{{company_id}} HTTP/1.1
     &sort=id.asc
 Authorization: Bearer {{token}}
 
+### Get contact list
+GET {{base_url}}/contacts HTTP/1.1
+    ?limit=10
+    &offset=0
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
+### Create contact
+POST {{base_url}}/contacts HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "assign_to_user_id": {{user_id}},
+  "company_id": {{company_id}},
+  "custom_url": "https://custom.com #{{$timestamp}}",
+  "emails": [
+    {
+      "email": "info@microsoft.com #{{$timestamp}}"
+    }
+  ],
+  "first_name": "Bill #{{$timestamp}}",
+  "job_title": "Co-founder #{{$timestamp}}",
+  "last_name": "Gates #{{$timestamp}}",
+  "linkedin_url": "https://linkedin.com/in/williamhgates #{{$timestamp}}",
+  "phones": [
+    {
+      "country": "US",
+      "number": "+1 (425) 882-8080 #{{$timestamp}}"
+    }
+  ]
+}'
 ### Get contacts comments
 GET {{base_url}}/contacts/{{contact_id}}/comments HTTP/1.1
     ?limit=10
@@ -50,6 +129,25 @@ Authorization: Bearer {{token}}
     "content": "This is a test comment for the contact #{{$timestamp}}"
 }
 
+### Get contact tags
+GET {{base_url}}/contacts/{{contact_id}}/tags HTTP/1.1
+    ?limit=10
+    &offset=0
+Authorization: Bearer {{token}}
+
+### Add tag to contact
+POST {{base_url}}/contacts/{{contact_id}}/tags HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "tag_id": {{tag_id}}
+}
+
+### Remove tag from contact
+DELETE {{base_url}}/contacts/{{contact_id}}/tags/{{tag_id}} HTTP/1.1
+Authorization: Bearer {{token}}
+
 ### Get contact with id
 GET {{base_url}}/contacts/{{contact_id}} HTTP/1.1
     ?limit=10
@@ -57,13 +155,10 @@ GET {{base_url}}/contacts/{{contact_id}} HTTP/1.1
     &sort=id.asc
 Authorization: Bearer {{token}}
 
-### Lookup by phone
-GET {{base_url}}/lookup/by_phone?number={{phone_number}} HTTP/1.1
+###Lookup by email
+GET {{base_url}}/lookup/by_email?email={{email}} HTTP/1.1
 Authorization: Bearer {{token}}
 
-### Get contacts list
-GET {{base_url}}/contacts HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+### Lookup by phone
+GET {{base_url}}/lookup/by_phone?number={{phone_number}} HTTP/1.1
 Authorization: Bearer {{token}}

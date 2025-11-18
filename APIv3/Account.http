@@ -1,16 +1,16 @@
 @user_id = 2945
 
+### Get user list
+GET {{base_url}}/users HTTP/1.1
+    ?limit=10
+    &offset=0
+    &q=onur%40hipcall.com
+    &sort=id.asc
+Authorization: Bearer {{token}}
+
 ### Get user by id
 GET {{base_url}}/users/{{user_id}} HTTP/1.1
 Authorization: Bearer {{token}}
-
-### Update user with patch method
-PATCH {{base_url}}/users/{{user_id}} HTTP/1.1
-Authorization: Bearer {{token}}
-
-{
-    "default_number": 8508850226
-}
 
 ### Update user with put method
 PUT {{base_url}}/users/{{user_id}} HTTP/1.1
@@ -20,10 +20,10 @@ Authorization: Bearer {{token}}
     "default_number": 8508850226
 }
 
-### Get user list
-GET {{base_url}}/users HTTP/1.1
-    ?limit=10
-    &offset=0
-    &q=onur%40hipcall.com
-    &sort=id.asc
+### Update user with patch method
+PATCH {{base_url}}/users/{{user_id}} HTTP/1.1
 Authorization: Bearer {{token}}
+
+{
+    "default_number": 8508850226
+}
