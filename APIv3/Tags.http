@@ -1,9 +1,9 @@
+@limit = 10
+@offset = 0
+@q = important
+@sort = name.asc
+@type = communication
 ### Get tag list
-GET {{base_url}}/tags HTTP/1.1
-    ?type=communication
-    &limit=10
-    &offset=0
-    &q=important
-    &sort=name.asc 
+GET {{base_url}}/tags?type={{type}}&limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json

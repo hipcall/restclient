@@ -1,11 +1,12 @@
+@limit = 10
+@offset = 0
+@q = Task
+@sort = id.asc
 @task_id = 110181
 @tag_id = 5416
 
 ### Get task list
-GET {{base_url}}/tasks HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc 
+GET {{base_url}}/tasks?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -38,10 +39,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 ### Get tasks comments
-GET {{base_url}}/tasks/{{task_id}}/comments HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/tasks/{{task_id}}/comments?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Create task comment
@@ -54,10 +52,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Get task tags
-GET {{base_url}}/tasks/{{task_id}}/tags HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/tasks/{{task_id}}/tags?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 

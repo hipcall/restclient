@@ -1,11 +1,10 @@
+@limit = 10
+@q = onur@hipcall.com
 @user_id = 2945
 
+
 ### Get user list
-GET {{base_url}}/users HTTP/1.1
-    ?limit=10
-    &offset=0
-    &q=onur%40hipcall.com
-    &sort=id.asc
+GET {{base_url}}/users?limit={{limit}}&offset=0&q={{q}}&sort=id.asc HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get user by id

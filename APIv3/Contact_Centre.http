@@ -1,15 +1,15 @@
 @company_id = 66336
 @contact_id = 49775
 @email = xfirm@bfpratik.com
+@limit = 10
+@offset = 0
 @phone_number = "+908508850226"
+@sort = id.asc
 @tag_id = 5417
 @user_id = 2945
 
 ### Get companies list
-GET {{base_url}}/companies HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/companies?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Create company
@@ -39,10 +39,7 @@ Content-Type: application/json
 
 
 ### Get companies comments
-GET {{base_url}}/companies/{{company_id}}/comments HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/companies/{{company_id}}/comments?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 
@@ -56,9 +53,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Get company tag
-GET {{base_url}}/companies/{{company_id}}/tags HTTP/1.1
-    ?limit=10
-    &offset=0
+GET {{base_url}}/companies/{{company_id}}/tags?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Add tag to company
@@ -75,17 +70,11 @@ DELETE {{base_url}}/companies/{{company_id}}/tags/{{tag_id}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get companies list with id
-GET {{base_url}}/companies/{{company_id}} HTTP/1.1 
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/companies/{{company_id}}?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1 
 Authorization: Bearer {{token}}
 
 ### Get contact list
-GET {{base_url}}/contacts HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/contacts?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Create contact
@@ -114,10 +103,7 @@ Content-Type: application/json
   ]
 }'
 ### Get contacts comments
-GET {{base_url}}/contacts/{{contact_id}}/comments HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/contacts/{{contact_id}}/comments?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Create contacts comments
@@ -130,9 +116,7 @@ Authorization: Bearer {{token}}
 }
 
 ### Get contact tags
-GET {{base_url}}/contacts/{{contact_id}}/tags HTTP/1.1
-    ?limit=10
-    &offset=0
+GET {{base_url}}/contacts/{{contact_id}}/tags?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Add tag to contact
@@ -149,10 +133,7 @@ DELETE {{base_url}}/contacts/{{contact_id}}/tags/{{tag_id}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get contact with id
-GET {{base_url}}/contacts/{{contact_id}} HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc
+GET {{base_url}}/contacts/{{contact_id}}?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ###Lookup by email

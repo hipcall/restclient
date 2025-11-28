@@ -1,16 +1,16 @@
-@deal_id = 5441
+@deal_id = 5968
+@limit = 10
+@offset = 0
+@q = Deal
+@sort = id.asc
 
 ### Get deal list
-GET {{base_url}}/deals HTTP/1.1
-    ?limit=10
-    &offset=0
-    &q=Acme%20Deal
-    &sort=id.asc 
+GET {{base_url}}/deals?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
 ### Get deals comments
-GET {{base_url}}/deals/{{deal_id}}/comments?limit=10&offset=0&sort=id.asc HTTP/1.1
+GET {{base_url}}/deals/{{deal_id}}/comments?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 

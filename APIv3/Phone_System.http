@@ -1,30 +1,99 @@
+@call_duration = 20
 @call_id = d126b9c5-70cf-4e17-acc1-efb1f79786df
+@call_list_sort = started_at.asc
 @date = 2023-11-06
+@direction_eq = inbound
+@direction_in = inbound,outbound
 @extension_id = 2004
 @greeting_id = 2494
+@limit = 20
+@missing_call = true
 @number_id = 638
+@offset = 0
+@q = 8508850226
+@sort = id.asc
+@started_at = 2025-09-01T00:00:00Z
+@started_date = 2025-09-01
+@ended_at = 2025-09-30T23:59:59Z
+@ended_date = 2025-09-30
 @tag_id = 5352
 @team_id = 1560
 @user_id = 2945
 @voicemail_id = 78
 
-### Get call list
-GET {{base_url}}/calls HTTP/1.1
-    ?limit=5
-    &offset=0
-    &q=08508850226
-    &sort=started_at.asc
-    &started_at%5Bgte%5D=2023-11-06T00%3A00%3A00Z
-    &started_at%5Blte%5D=2023-11-07T23%3A59%3A59Z
-    &started_at%5Bgt%5D=2023-11-06T00%3A00%3A00Z
-    &started_at%5Blt%5D=2023-11-07T23%3A59%3A59Z
-    &missing_call%5Beq%5D=true
-    &direction%5Beq%5D=inbound
-    &direction%5Bin%5D=inbound%2Coutbound
-    &call_duration%5Bgte%5D=300
-    &call_duration%5Blte%5D=60
-    &call_duration%5Bgt%5D=300
-    &call_duration%5Blt%5D=30
+### Get call list at started_date date 
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[gt]={{started_date}}&started_at[lt]={{ended_date}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with started_at greater than or equal (gte) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[gte]={{started_at}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with less than or equal (lte) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[lte]={{started_at}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with greater than (gt) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[gt]={{started_date}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with less than (lt) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[lt]={{started_date}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with started_date greater than (gt) and started_date less than (lt) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[gt]={{started_date}}&started_at[lt]={{ended_date}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with started_at greater than or equal (gte) and started_at less than or equal (lte) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[gte]={{started_at}}&started_at[lte]={{ended_at}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with started_at greater than (gt) or with equal (gte) and started_at less than (lt) or with equal (lte) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&started_at[gte]={{started_at}}&started_at[lte]={{ended_at}}&started_at[gt]={{started_date}}&started_at[lt]={{ended_date}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with direction equal (eq) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&direction[eq]={{direction_eq}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with direction in (in) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&direction[in]={{direction_in}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with call duration greater than or equal (gte) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&call_duration[gte]={{call_duration}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with call duration less than or equal (lte) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&call_duration[lte]={{call_duration}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with call duration greater than (gt) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&call_duration[gt]={{call_duration}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+### Get call list with call duration less than (lt) filter
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{call_list_sort}}&call_duration[lt]={{call_duration}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+
+### Get call list with limit
+GET {{base_url}}/calls?limit={{limit}}&offset={{offset}}&sort={{call_list_sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -65,10 +134,7 @@ Content-Type: application/json
 }
 
 ### Get calls comments
-GET {{base_url}}/calls/{{call_id}}/comments HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc 
+GET {{base_url}}/calls/{{call_id}}/comments?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -82,10 +148,7 @@ Content-Type: application/json
 }
 
 ### Get calls tags
-GET {{base_url}}/calls/{{call_id}}/tags HTTP/1.1
-    ?limit=10
-    &offset=0
-    &sort=id.asc 
+GET {{base_url}}/calls/{{call_id}}/tags?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -108,11 +171,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 ### Get extension list
-GET {{base_url}}/extensions HTTP/1.1
-    ?limit=10
-    &offset=0
-    &q=100
-    &sort=id.asc 
+GET {{base_url}}/extensions?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 Content-Type: application/json
 
@@ -133,11 +192,7 @@ GET {{base_url}}/extensions/{{extension_id}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get greeting list
-GET {{base_url}}/greetings HTTP/1.1
-    ?limit=10
-    &offset=0
-    &q=Welcome
-    &sort=id.asc
+GET {{base_url}}/greetings?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get greeting with id
@@ -145,11 +200,7 @@ GET {{base_url}}/greetings/{{greeting_id}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get number list
-GET {{base_url}}/numbers HTTP/1.1
-    ?limit=5
-    &offset=0
-    &q=08508850226
-    &sort=id.asc,name.desc_nulls_last
+GET {{base_url}}/numbers?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get number with id
@@ -157,7 +208,7 @@ GET {{base_url}}/numbers/{{number_id}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get team list
-GET {{base_url}}/teams HTTP/1.1
+GET {{base_url}}/teams?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get team with id
@@ -165,11 +216,7 @@ GET {{base_url}}/teams/{{team_id}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get user list
-GET {{base_url}}/users HTTP/1.1
-    ?limit=10
-    &offset=0
-    &q=onur@hipcall.com
-    &sort=id.asc
+GET {{base_url}}/users?limit={{limit}}&offset={{offset}}&q={{q}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
 
 ### Get user with id (show)
@@ -182,7 +229,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  /*"default_number": "08508850226",*/
+  "default_number": "+908508850226",
   "state": "available"
 }
 
@@ -192,7 +239,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  /*"default_number": 123,*/
+  "default_number": 123,
   "state": "available"
 }
 
