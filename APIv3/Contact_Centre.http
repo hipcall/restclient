@@ -3,7 +3,7 @@
 @email = xfirm@bfpratik.com
 @limit = 10
 @offset = 0
-@phone_number = "+908508850226"
+@phone_number = +908508850227
 @sort = id.asc
 @tag_id = 5417
 @user_id = 2945
@@ -52,6 +52,50 @@ Authorization: Bearer {{token}}
     "content": "Created comment for company #{{$timestamp}}"
 }
 
+### Add email addresses to a company
+POST {{base_url}}/companies/{{company_id}}/emails HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "emails": [
+    "{{email}}"
+  ]
+}
+
+### Delete email addresses from a company
+DELETE {{base_url}}/companies/{{company_id}}/emails/{{email}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "emails": [
+    "{{email}}"
+  ]
+}
+
+### Add phone numbers to company
+POST {{base_url}}/companies/{{company_id}}/phones HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "numbers": [
+    "{{phone_number}}"
+  ]
+}
+
+### Delete phone numbers from company
+DELETE {{base_url}}/companies/{{company_id}}/phones/{{phone_number}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "numbers": [
+    "{{phone_number}}"
+  ]
+}
+
 ### Get company tag
 GET {{base_url}}/companies/{{company_id}}/tags?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
@@ -72,6 +116,15 @@ Authorization: Bearer {{token}}
 ### Get companies list with id
 GET {{base_url}}/companies/{{company_id}}?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1 
 Authorization: Bearer {{token}}
+
+### Assign company to user with patch method
+PATCH {{base_url}}/companies/{{company_id}}/assign HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "assign_to_user_id": {{user_id}}
+}
 
 ### Get contact list
 GET {{base_url}}/contacts?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
@@ -115,6 +168,49 @@ Authorization: Bearer {{token}}
     "content": "This is a test comment for the contact #{{$timestamp}}"
 }
 
+### Add email addresses to a contact
+POST {{base_url}}/contacts/{{contact_id}}/emails HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "emails": [
+    "{{email}}"
+  ]
+}
+
+### Delete email addresses from a contact
+DELETE {{base_url}}/contacts/{{contact_id}}/emails/{{email}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "emails": [
+    "{{email}}"
+  ]
+}
+
+### Add phone numbers to a contact
+POST {{base_url}}/contacts/{{contact_id}}/phones HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "numbers": [
+    "{{phone_number}}"
+  ]
+}
+
+### Delete phone numbers from a contact
+DELETE {{base_url}}/contacts/{{contact_id}}/phones/{{phone_number}} HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "numbers": [
+    "{{phone_number}}"
+  ]
+}
 ### Get contact tags
 GET {{base_url}}/contacts/{{contact_id}}/tags?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
@@ -135,6 +231,15 @@ Authorization: Bearer {{token}}
 ### Get contact with id
 GET {{base_url}}/contacts/{{contact_id}}?limit={{limit}}&offset={{offset}}&sort={{sort}} HTTP/1.1
 Authorization: Bearer {{token}}
+
+### Assign contact to user with patch method
+PATCH {{base_url}}/contacts/{{contact_id}}/assign HTTP/1.1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "assign_to_user_id": {{user_id}}
+}
 
 ###Lookup by email
 GET {{base_url}}/lookup/by_email?email={{email}} HTTP/1.1
